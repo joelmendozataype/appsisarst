@@ -138,10 +138,6 @@
 
         </nav>
 
-        <div class="mt-auto p-3 small text-white-50">
-            v1.0 · Sprint 5<br>
-            {{ now()->format('d/m/Y') }}
-        </div>
     </aside>
 
     <div class="sisarst-main">
