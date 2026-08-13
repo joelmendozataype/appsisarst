@@ -38,17 +38,15 @@ body {
 
 // --- Estructura del panel --------------------------------------------
 .sisarst-layout {
-    display: flex;
-    min-height: 100vh;      // crece con el contenido
+    min-height: 100vh;
 }
 
 .sisarst-sidebar {
     width: var(--sisarst-sidebar-width);
-    flex-shrink: 0;
-    align-self: flex-start; // necesario para que sticky funcione en flex
-    position: sticky;
+    position: fixed;        // pegado al viewport sin afectar el flujo
     top: 0;
-    height: 100vh;          // ocupa exactamente el viewport
+    left: 0;
+    height: 100vh;
     background: var(--sisarst-sidebar-bg);
     color: rgba(255, 255, 255, .85);
     display: flex;
@@ -142,11 +140,10 @@ body {
 }
 
 .sisarst-main {
-    flex: 1 1 auto;
-    min-width: 0;
+    margin-left: var(--sisarst-sidebar-width); // espacio para el sidebar fixed
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    // Sin overflow aquí: el body hace scroll normal, el sidebar es sticky
 }
 
 .sisarst-topbar {
