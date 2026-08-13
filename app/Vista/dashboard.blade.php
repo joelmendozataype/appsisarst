@@ -600,9 +600,6 @@
     <div class="d-flex align-items-center gap-2 mt-3 px-3 py-2 rounded" style="background:#f0f9ff; border:1px solid #bae6fd; font-size:.84rem">
         <i class="bi bi-info-circle text-info"></i>
         <span>Hay <strong>{{ $sinCuenta }}</strong> trabajador(es) activo(s) sin cuenta de acceso.</span>
-        @if (auth()->user()->tienePermiso('USUARIOS', 'ESCRIBIR'))
-            <a href="{{ route('usuario.create') }}" class="ms-auto btn btn-sm btn-outline-primary">Crear cuenta</a>
-        @endif
     </div>
 @endif
 
