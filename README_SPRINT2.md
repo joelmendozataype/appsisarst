@@ -32,6 +32,27 @@ Un trabajador sin horario asignado **no puede ser evaluado** (criterio CA-HU16-0
 
 ---
 
+## Cronograma de Actividades (fuente: ANALISIS SISARST, sección 4.5.2)
+
+**Período del Sprint:** 09/06/2026 – 28/06/2026
+
+| Actividad | Tipo | Responsable | Inicio | Fin | Días | Estado |
+|---|---|---|---|---|---|---|
+| Sprint Planning | Reunión Scrum | Cristhian Prieto Hinojosa | 09/06 | 09/06 | 1 | Terminado |
+| Análisis del control de asistencia (HU-05, HU-06, HU-07) | Análisis | Sedano Humani David | 10/06 | 11/06 | 2 | Terminado |
+| Análisis de horarios de trabajo (HU-16) | Análisis | Soto Boza Eduardo | 10/06 | 11/06 | 2 | Terminado |
+| Diseño UML módulo asistencia (casos de uso, secuencia, clases) | Diseño | Silva Choque Mariano | 12/06 | 14/06 | 3 | Terminado |
+| Diseño de base de datos (asistencia, horario, asignación) | Diseño | Sedano Humani David | 12/06 | 14/06 | 3 | Terminado |
+| Diseño de prototipos de vistas (marcación, consulta, horarios) | Diseño | Joel Mendoza Taype | 15/06 | 16/06 | 2 | Terminado |
+| Desarrollo HU-16: Registro y asignación de horarios | Desarrollo | Silva Choque Mariano | 16/06 | 18/06 | 3 | Terminado |
+| Desarrollo HU-05: Registrar asistencia (marcación entrada/salida) | Desarrollo | Soto Boza Eduardo | 18/06 | 20/06 | 3 | Terminado |
+| Desarrollo HU-06: Consultar asistencia por período con filtros | Desarrollo | Joel Mendoza Taype | 21/06 | 23/06 | 3 | Terminado |
+| Desarrollo HU-07: Cierre automático de jornada (tarea 23:30) | Desarrollo | Sedano Humani David | 23/06 | 25/06 | 3 | Terminado |
+| Pruebas del módulo asistencia (unitarias e integración) | Pruebas | Silva Choque Mariano | 25/06 | 27/06 | 3 | Terminado |
+| Sprint Review + Retrospective | Reunión Scrum | Cristhian Prieto Hinojosa | 28/06 | 28/06 | 1 | Terminado |
+
+---
+
 ## Tarea programada (HU-07)
 
 ```bash

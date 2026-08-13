@@ -18,6 +18,28 @@ Arquitectura **MVC** sobre Laravel 12 · PHP 8.2 · MariaDB (puerto 3307) · Boo
 
 ---
 
+## Cronograma de Actividades (fuente: ANALISIS SISARST, sección 4.5.1)
+
+**Período del Sprint:** 19/05/2026 – 05/06/2026
+
+| Actividad | Tipo | Responsable | Inicio | Fin | Días | Estado |
+|---|---|---|---|---|---|---|
+| Sprint Planning | Reunión Scrum | Cristhian Prieto Hinojosa | 19/05 | 19/05 | 1 | Terminado |
+| Análisis del padrón de personal (HU-01 a HU-04, HU-18) | Análisis | Soto Boza Eduardo | 20/05 | 21/05 | 2 | Terminado |
+| Análisis de autenticación y control por rol (RF-13) | Análisis | Sedano Humani David | 20/05 | 21/05 | 2 | Terminado |
+| Diseño UML módulo padrón (casos de uso, secuencia, clases) | Diseño | Silva Choque Mariano | 22/05 | 24/05 | 3 | Terminado |
+| Diseño de base de datos (personal, área, establecimiento, rol, permiso) | Diseño | Sedano Humani David | 22/05 | 24/05 | 3 | Terminado |
+| Diseño de prototipos de vistas (listado, alta, edición, historial) | Diseño | Joel Mendoza Taype | 25/05 | 26/05 | 2 | Terminado |
+| Desarrollo HU-01: Registrar personal | Desarrollo | Silva Choque Mariano | 26/05 | 27/05 | 2 | Terminado |
+| Desarrollo HU-02: Editar datos del personal | Desarrollo | Soto Boza Eduardo | 27/05 | 28/05 | 2 | Terminado |
+| Desarrollo HU-03: Consultar padrón con filtros | Desarrollo | Joel Mendoza Taype | 28/05 | 30/05 | 3 | Terminado |
+| Desarrollo HU-04: Desactivar personal (baja lógica) | Desarrollo | Sedano Humani David | 30/05 | 01/06 | 3 | Terminado |
+| Desarrollo HU-18: Historial laboral + RF-13: Autenticación | Desarrollo | Silva Choque Mariano | 01/06 | 03/06 | 3 | Terminado |
+| Pruebas del módulo padrón (unitarias e integración) | Pruebas | Soto Boza Eduardo | 03/06 | 04/06 | 2 | Terminado |
+| Sprint Review + Retrospective | Reunión Scrum | Cristhian Prieto Hinojosa | 05/06 | 05/06 | 1 | Terminado |
+
+---
+
 ## Puesta en marcha rápida
 
 ```bash
