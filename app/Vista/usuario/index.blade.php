@@ -9,26 +9,6 @@
 
 @section('contenido')
 
-    <div class="row g-3 mb-3">
-        @foreach ([
-            ['Activas',    $resumen['activos'],    'success', 'bi-person-check-fill'],
-            ['Inactivas',  $resumen['inactivos'],  'info',    'bi-person-dash'],
-            ['Bloqueadas', $resumen['bloqueados'], 'danger',  'bi-lock-fill'],
-            ['Sin rol',    $resumen['sin_rol'],    'warning', 'bi-exclamation-triangle-fill'],
-        ] as [$titulo, $valor, $color, $icono])
-            <div class="col-6 col-lg-3">
-                <div class="card kpi-card kpi-{{ $color }}">
-                    <div class="card-body d-flex justify-content-between align-items-center py-3">
-                        <div>
-                            <div class="kpi-titulo">{{ $titulo }}</div>
-                            <div class="kpi-valor">{{ $valor }}</div>
-                        </div>
-                        <i class="bi {{ $icono }} fs-3 text-{{ $color }} opacity-50"></i>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
 
     @if ($sinCuenta > 0)
         <div class="alert alert-light border no-imprimir">

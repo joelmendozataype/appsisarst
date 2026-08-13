@@ -11,27 +11,6 @@
 
 @section('contenido')
 
-    {{-- Tarjetas de resumen --}}
-    <div class="row g-3 mb-3">
-        @foreach ([
-            ['Activos',      $resumen['activos'],     'success', 'bi-people-fill'],
-            ['Inactivos',    $resumen['inactivos'],   'danger',  'bi-person-dash'],
-            ['Sin horario',  $resumen['sin_horario'], 'warning', 'bi-clock-history'],
-            ['Areas',        $resumen['areas'],       'info',    'bi-diagram-3'],
-        ] as [$titulo, $valor, $color, $icono])
-            <div class="col-6 col-lg-3">
-                <div class="card kpi-card kpi-{{ $color }}">
-                    <div class="card-body d-flex justify-content-between align-items-center py-3">
-                        <div>
-                            <div class="kpi-titulo">{{ $titulo }}</div>
-                            <div class="kpi-valor">{{ $valor }}</div>
-                        </div>
-                        <i class="bi {{ $icono }} fs-3 text-{{ $color }} opacity-50"></i>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
 
     {{-- Barra de filtros (CA-HU03-02) --}}
     <div class="card mb-3 no-imprimir">

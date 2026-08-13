@@ -12,28 +12,6 @@
 
 @section('contenido')
 
-    {{-- Totales por estado (CA-HU09-03) --}}
-    <div class="row g-3 mb-3">
-        @foreach ([
-            ['Pendientes',  'PENDIENTE',  'warning',   'bi-hourglass-split'],
-            ['Aprobados',   'APROBADO',   'success',   'bi-check-circle-fill'],
-            ['Rechazados',  'RECHAZADO',  'danger',    'bi-x-circle-fill'],
-            ['Finalizados', 'FINALIZADO', 'secondary', 'bi-flag-fill'],
-        ] as [$titulo, $clave, $color, $icono])
-            <div class="col-6 col-lg-3">
-                <div class="card kpi-card kpi-{{ $color === 'secondary' ? 'info' : $color }}">
-                    <div class="card-body d-flex justify-content-between align-items-center py-3">
-                        <div>
-                            <div class="kpi-titulo">{{ $titulo }}</div>
-                            <div class="kpi-valor">{{ $porEstado[$clave] ?? 0 }}</div>
-                        </div>
-                        <i class="bi {{ $icono }} fs-3 text-{{ $color }} opacity-50"></i>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-
     @if ($vencidos > 0 && auth()->user()->tienePermiso('MOVIMIENTOS', 'EDITAR'))
         <div class="alert alert-warning d-flex justify-content-between align-items-center no-imprimir">
             <div>

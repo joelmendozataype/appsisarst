@@ -11,39 +11,6 @@
 
 @section('contenido')
 
-    {{-- Resumen del periodo filtrado (CA-HU06-02) --}}
-    <div class="row g-3 mb-3">
-        @foreach ([
-            ['Registros',    $resumen['total'],        '',        'bi-list-check'],
-            ['Puntuales',    $resumen['puntuales'],    'success', 'bi-check-circle-fill'],
-            ['Tardanzas',    $resumen['tardanzas'],    'warning', 'bi-clock-fill'],
-            ['Faltas',       $resumen['faltas'],       'danger',  'bi-x-circle-fill'],
-            ['Justificados', $resumen['justificados'], 'info',    'bi-file-earmark-text-fill'],
-        ] as [$titulo, $valor, $color, $icono])
-            <div class="col-6 col-lg">
-                <div class="card kpi-card {{ $color ? 'kpi-'.$color : '' }} h-100">
-                    <div class="card-body d-flex justify-content-between align-items-center py-3">
-                        <div>
-                            <div class="kpi-titulo">{{ $titulo }}</div>
-                            <div class="kpi-valor">{{ $valor }}</div>
-                        </div>
-                        <i class="bi {{ $icono }} fs-3 text-{{ $color ?: 'primary' }} opacity-50"></i>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-
-        <div class="col-6 col-lg">
-            <div class="card kpi-card h-100">
-                <div class="card-body py-3">
-                    <div class="kpi-titulo">Cumplimiento</div>
-                    <div class="kpi-valor">{{ $resumen['cumplimiento'] }}%</div>
-                    <div class="small text-muted">{{ $resumen['minutos_tardanza'] }} min de tardanza</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     {{-- Barra de filtros (CA-HU06-01) --}}
     <div class="card mb-3 no-imprimir">
         <div class="card-body">
