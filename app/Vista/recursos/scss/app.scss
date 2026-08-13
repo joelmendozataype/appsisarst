@@ -28,26 +28,27 @@ $border-radius: .5rem;
 
 body {
     background-color: #f2f5f9;
-    // NO min-height aquí; el layout controla la altura
+    min-height: 100vh;
 }
 
 // --- Estructura del panel --------------------------------------------
 .sisarst-layout {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;      // crece con el contenido
 }
 
 .sisarst-sidebar {
     width: var(--sisarst-sidebar-width);
     flex-shrink: 0;
-    height: 100vh;
-    position: sticky;       // sidebar fijo en su columna, no se mueve al hacer scroll
+    align-self: flex-start; // necesario para que sticky funcione en flex
+    position: sticky;
     top: 0;
+    height: 100vh;          // ocupa exactamente el viewport
     background: var(--sisarst-sidebar-bg);
     color: rgba(255, 255, 255, .85);
     display: flex;
     flex-direction: column;
-    overflow-y: auto;       // scroll interno si hay muchos ítems
+    overflow-y: auto;       // scroll si los ítems no caben
     overflow-x: hidden;
 
     .sisarst-brand {
@@ -248,18 +249,17 @@ body {
         vertical-align: middle;
     }
 
-    // Columnas que SÍ pueden tener texto largo (no nowrap)
-    td.col-nombre,
-    td.col-area {
+    // Columna nombre: texto largo permitido, ancho fijo
+    td.col-nombre {
         white-space: normal;
-        min-width: 160px;
-        max-width: 220px;
+        min-width: 170px;
+        max-width: 230px;
     }
 
-    td.col-cargo {
-        white-space: normal;
-        min-width: 110px;
-        max-width: 160px;
+    // Cargo y Area: nowrap para no comprimir la fila
+    td.col-cargo,
+    td.col-area {
+        white-space: nowrap;
     }
 }
 
