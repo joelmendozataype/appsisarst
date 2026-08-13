@@ -1,4 +1,4 @@
-{{-- Capa VISTA - Tablero profesional (Sprints 1-5). --}}
+﻿{{-- Capa VISTA - Tablero profesional (Sprints 1-5). --}}
 @extends('layouts.app')
 
 @section('titulo', 'Dashboard')
@@ -285,11 +285,7 @@
     <div class="db-section-icon icon-blue"><i class="bi bi-people-fill"></i></div>
     <h2>Padrón de Personal</h2>
     <hr>
-    @if (auth()->user()->tienePermiso('PADRON', 'LEER'))
-        <a href="{{ route('personal.index') }}" class="text-decoration-none">
-            Ver padrón <i class="bi bi-arrow-right"></i>
-        </a>
-    @endif
+    
 </div>
 
 <div class="row g-3 mb-2">
@@ -349,11 +345,7 @@
             <div class="db-section-icon icon-green"><i class="bi bi-calendar-check"></i></div>
             <h2>Asistencia hoy</h2>
             <hr>
-            @if (auth()->user()->tienePermiso('ASISTENCIA', 'LEER'))
-                <a href="{{ route('asistencia.index') }}" class="text-decoration-none">
-                    Ver <i class="bi bi-arrow-right"></i>
-                </a>
-            @endif
+            
         </div>
 
         @php
@@ -424,11 +416,7 @@
             <div class="db-section-icon icon-purple"><i class="bi bi-arrow-left-right"></i></div>
             <h2>Movimientos Institucionales</h2>
             <hr>
-            @if (auth()->user()->tienePermiso('MOVIMIENTOS', 'LEER'))
-                <a href="{{ route('movimiento.index') }}" class="text-decoration-none">
-                    Ver <i class="bi bi-arrow-right"></i>
-                </a>
-            @endif
+            
         </div>
 
         <div class="row g-2">
@@ -495,11 +483,7 @@
             <div class="db-section-icon icon-blue"><i class="bi bi-person-plus-fill"></i></div>
             <h2>Últimas incorporaciones</h2>
             <hr>
-            @if (auth()->user()->tienePermiso('PADRON', 'LEER'))
-                <a href="{{ route('personal.index') }}" class="text-decoration-none">
-                    Ver todos <i class="bi bi-arrow-right"></i>
-                </a>
-            @endif
+            
         </div>
         <div class="card" style="border-radius:.65rem; border:0; box-shadow:0 1px 4px rgba(0,0,0,.07)">
             <div class="table-responsive">
@@ -541,11 +525,7 @@
             <div class="db-section-icon icon-yellow"><i class="bi bi-hourglass-split"></i></div>
             <h2>Pendientes de decisión</h2>
             <hr>
-            @if (auth()->user()->tienePermiso('MOVIMIENTOS', 'LEER'))
-                <a href="{{ route('movimiento.index') }}" class="text-decoration-none">
-                    Ver todos <i class="bi bi-arrow-right"></i>
-                </a>
-            @endif
+            
         </div>
         <div class="card" style="border-radius:.65rem; border:0; box-shadow:0 1px 4px rgba(0,0,0,.07)">
             <div class="table-responsive">
@@ -592,11 +572,7 @@
     <div class="db-section-icon icon-purple"><i class="bi bi-shield-lock-fill"></i></div>
     <h2>Gestión de Usuarios</h2>
     <hr>
-    @if (auth()->user()->tienePermiso('USUARIOS', 'LEER'))
-        <a href="{{ route('usuario.index') }}" class="text-decoration-none">
-            Ver usuarios <i class="bi bi-arrow-right"></i>
-        </a>
-    @endif
+    
 </div>
 
 <div class="row g-3">
