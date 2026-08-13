@@ -28,24 +28,27 @@ $border-radius: .5rem;
 
 body {
     background-color: #f2f5f9;
-    min-height: 100vh;
+    // NO min-height aquí; el layout controla la altura
 }
 
 // --- Estructura del panel --------------------------------------------
 .sisarst-layout {
     display: flex;
-    height: 100vh;          // altura fija = viewport completo
-    overflow: hidden;       // evita scroll del body entero
+    height: 100vh;
 }
 
 .sisarst-sidebar {
     width: var(--sisarst-sidebar-width);
     flex-shrink: 0;
+    height: 100vh;
+    position: sticky;       // sidebar fijo en su columna, no se mueve al hacer scroll
+    top: 0;
     background: var(--sisarst-sidebar-bg);
     color: rgba(255, 255, 255, .85);
     display: flex;
     flex-direction: column;
-    overflow-y: auto;       // sidebar scroll independiente si los ítems no caben
+    overflow-y: auto;       // scroll interno si hay muchos ítems
+    overflow-x: hidden;
 
     .sisarst-brand {
         padding: 1.25rem 1rem;
@@ -137,7 +140,7 @@ body {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;       // solo el contenido principal hace scroll
+    // Sin overflow aquí: el body hace scroll normal, el sidebar es sticky
 }
 
 .sisarst-topbar {
@@ -230,8 +233,7 @@ body {
 }
 
 .tabla-padron {
-    // Forzar scroll horizontal en lugar de romper celdas
-    min-width: 900px;
+    min-width: 860px;       // ancho mínimo para que la tabla no comprima columnas
 
     th {
         font-size: .76rem;
