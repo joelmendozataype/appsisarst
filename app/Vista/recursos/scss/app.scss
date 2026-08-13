@@ -43,15 +43,16 @@ body {
 
 .sisarst-sidebar {
     width: var(--sisarst-sidebar-width);
-    position: fixed;        // pegado al viewport sin afectar el flujo
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
+    z-index: 1040;          // encima del contenido y del topbar (Bootstrap usa 1030)
     background: var(--sisarst-sidebar-bg);
     color: rgba(255, 255, 255, .85);
     display: flex;
     flex-direction: column;
-    overflow-y: auto;       // scroll si los ítems no caben
+    overflow-y: auto;
     overflow-x: hidden;
 
     .sisarst-brand {
@@ -150,10 +151,10 @@ body {
     background: #fff;
     border-bottom: 1px solid #dee2e6;
     padding: .75rem 1.5rem;
-    position: sticky;       // queda fijo al hacer scroll
+    position: sticky;
     top: 0;
-    z-index: 100;
-    flex-shrink: 0;         // nunca se comprime
+    z-index: 100;           // menor que el sidebar (1040) para no taparlo
+    flex-shrink: 0;
     box-shadow: 0 1px 4px rgba(16, 24, 40, .07);
 }
 
