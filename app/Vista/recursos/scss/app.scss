@@ -225,12 +225,34 @@ body {
 }
 
 .tabla-padron {
+    // Forzar scroll horizontal en lugar de romper celdas
+    min-width: 900px;
+
     th {
         font-size: .76rem;
         text-transform: uppercase;
         letter-spacing: .05em;
         color: $secondary;
         white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    // Columnas que SÍ pueden tener texto largo (no nowrap)
+    td.col-nombre,
+    td.col-area {
+        white-space: normal;
+        min-width: 160px;
+        max-width: 220px;
+    }
+
+    td.col-cargo {
+        white-space: normal;
+        min-width: 110px;
+        max-width: 160px;
     }
 }
 

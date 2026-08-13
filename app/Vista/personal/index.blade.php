@@ -145,7 +145,7 @@
                 @forelse ($personal as $trabajador)
                     <tr>
                         <td class="font-monospace">{{ $trabajador->dni }}</td>
-                        <td>
+                        <td class="col-nombre">
                             <a href="{{ route('personal.show', $trabajador) }}"
                                class="text-decoration-none fw-semibold">
                                 {{ $trabajador->nombre_completo }}
@@ -154,9 +154,9 @@
                                 <div class="small text-muted">{{ $trabajador->correo }}</div>
                             @endif
                         </td>
-                        <td class="small">{{ $trabajador->cargo }}</td>
+                        <td class="small col-cargo">{{ $trabajador->cargo }}</td>
                         <td><span class="badge text-bg-secondary">{{ $trabajador->condicion_laboral }}</span></td>
-                        <td class="small">
+                        <td class="small col-area">
                             {{ $trabajador->area?->nombre }}
                             <div class="text-muted">{{ $trabajador->area?->establecimiento?->nombre }}</div>
                         </td>
