@@ -1,8 +1,8 @@
-{{-- Capa VISTA - HU-11 / CA-HU11-01 (Figuras 4.16 y 4.17). --}}
+﻿{{-- Capa VISTA - HU-11 / CA-HU11-01 (Figuras 4.16 y 4.17). --}}
 @extends('layouts.app')
 
 @section('titulo', 'Nueva cuenta de usuario')
-@section('subtitulo', 'HU-11 · Creacion de usuario y asignacion de rol')
+@section('subtitulo', 'Creación de usuario y asignación de rol')
 
 @section('contenido')
 

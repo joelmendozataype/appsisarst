@@ -1,8 +1,8 @@
-{{-- Capa VISTA - HU-16 / CA-HU16-01: alta de un horario de trabajo. --}}
+﻿{{-- Capa VISTA - HU-16 / CA-HU16-01: alta de un horario de trabajo. --}}
 @extends('layouts.app')
 
 @section('titulo', 'Nuevo horario')
-@section('subtitulo', 'HU-16 · Registro en el catalogo de horarios')
+@section('subtitulo', 'Registro en el catálogo de horarios')
 
 @section('contenido')
 

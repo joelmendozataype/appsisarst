@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-09: Consulta de movimientos institucionales.
     Figuras 3.7 y 3.8 del documento de diseno.
     Filtros por personal, tipo, estado, area y periodo (CA-HU09-01), con
@@ -8,7 +8,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Movimientos Institucionales')
-@section('subtitulo', 'HU-09 · Consulta e historial')
+@section('subtitulo', 'Consulta e historial')
 
 @section('contenido')
 

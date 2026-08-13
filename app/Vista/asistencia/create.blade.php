@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-05: Marcacion de entrada y salida.
     Figuras 2.8 y 2.9 del documento de diseno.
     El sello de tiempo se propone con la hora del servidor (CA-HU05-01) y
@@ -7,7 +7,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Marcacion de asistencia')
-@section('subtitulo', 'HU-05 · Registro de entradas y salidas')
+@section('subtitulo', 'Registro de entradas y salidas')
 
 @section('contenido')
 

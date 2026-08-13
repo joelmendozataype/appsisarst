@@ -1,8 +1,8 @@
-{{-- Capa VISTA - HU-11 / CA-HU11-02: edicion de la cuenta. --}}
+﻿{{-- Capa VISTA - HU-11 / CA-HU11-02: edicion de la cuenta. --}}
 @extends('layouts.app')
 
 @section('titulo', 'Editar cuenta')
-@section('subtitulo', 'HU-11 · '.$usuario->username)
+@section('subtitulo', ''.$usuario->username)
 
 @section('contenido')
 

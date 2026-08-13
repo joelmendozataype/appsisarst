@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-18: Consulta del historial laboral del personal.
     Reune en una sola pantalla los datos del trabajador, sus asistencias y
     sus movimientos institucionales ordenados del mas reciente al mas
@@ -7,7 +7,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Historial laboral')
-@section('subtitulo', 'HU-18 · '.$personal->nombre_completo)
+@section('subtitulo', ''.$personal->nombre_completo)
 
 @section('contenido')
 

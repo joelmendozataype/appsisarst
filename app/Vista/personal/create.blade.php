@@ -1,8 +1,8 @@
-{{-- Capa VISTA - HU-01: Registro de nuevo personal (Figuras 1.11 y 1.12). --}}
+﻿{{-- Capa VISTA - HU-01: Registro de nuevo personal (Figuras 1.11 y 1.12). --}}
 @extends('layouts.app')
 
 @section('titulo', 'Registrar personal')
-@section('subtitulo', 'HU-01 · Alta en el padron de la Red de Salud Tayacaja')
+@section('subtitulo', 'Alta en el padrón de la Red de Salud Tayacaja')
 
 @section('contenido')
 

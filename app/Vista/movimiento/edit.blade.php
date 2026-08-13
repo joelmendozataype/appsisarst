@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-08: edicion de un movimiento PENDIENTE.
     Una vez aprobado o rechazado el movimiento es un acto administrativo y
     ya no admite cambios: solo transiciones de estado.
@@ -6,7 +6,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Editar movimiento')
-@section('subtitulo', 'HU-08 · '.$movimiento->personal?->nombre_completo)
+@section('subtitulo', ''.$movimiento->personal?->nombre_completo)
 
 @section('contenido')
 

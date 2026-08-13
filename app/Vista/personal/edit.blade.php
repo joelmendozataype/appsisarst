@@ -1,11 +1,11 @@
-{{--
+﻿{{--
     Capa VISTA - HU-02: Edicion de datos del personal (Figuras 1.13 y 1.14).
     El sistema muestra los datos actuales antes de editar (CA-HU02-02).
 --}}
 @extends('layouts.app')
 
 @section('titulo', 'Editar personal')
-@section('subtitulo', 'HU-02 · '.$personal->nombre_completo)
+@section('subtitulo', ''.$personal->nombre_completo)
 
 @section('contenido')
 

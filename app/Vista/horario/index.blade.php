@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-16: Catalogo de horarios de trabajo.
     Incluye la advertencia del personal sin horario asignado, que el
     criterio CA-HU16-03 exige mostrar porque no puede ser evaluado.
@@ -6,7 +6,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Horarios de Trabajo')
-@section('subtitulo', 'HU-16 · Catalogo y asignacion')
+@section('subtitulo', 'Catálogo y asignación')
 
 @section('contenido')
 

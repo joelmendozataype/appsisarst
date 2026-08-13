@@ -1,11 +1,11 @@
-{{--
+﻿{{--
     Capa VISTA - HU-11: Gestion de usuarios del sistema.
     Figuras 4.14 y 4.15 del documento de diseno.
 --}}
 @extends('layouts.app')
 
 @section('titulo', 'Usuarios del Sistema')
-@section('subtitulo', 'HU-11 · Cuentas de acceso')
+@section('subtitulo', 'Cuentas de acceso')
 
 @section('contenido')
 

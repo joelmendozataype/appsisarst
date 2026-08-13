@@ -152,12 +152,19 @@ body {
 .kpi-card {
     border: 0;
     border-left: .3rem solid $primary;
-    box-shadow: 0 1px 3px rgba(16, 24, 40, .08);
+    box-shadow: 0 2px 8px rgba(16, 24, 40, .09);
+    transition: box-shadow .15s ease, transform .15s ease;
+
+    &:hover {
+        box-shadow: 0 6px 18px rgba(16, 24, 40, .13);
+        transform: translateY(-2px);
+    }
 
     .kpi-valor {
         font-size: 1.9rem;
         font-weight: 700;
         line-height: 1;
+        letter-spacing: -.02em;
     }
 
     .kpi-titulo {
@@ -165,12 +172,37 @@ body {
         text-transform: uppercase;
         letter-spacing: .08em;
         color: $secondary;
+        margin-bottom: .25rem;
     }
 
-    &.kpi-success { border-left-color: $success; }
-    &.kpi-danger  { border-left-color: $danger; }
-    &.kpi-warning { border-left-color: $warning; }
-    &.kpi-info    { border-left-color: $info; }
+    .bi {
+        width: 2.6rem;
+        height: 2.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: .65rem;
+        font-size: 1.25rem !important;
+        opacity: 1 !important;
+        flex-shrink: 0;
+    }
+
+    &.kpi-success {
+        border-left-color: $success;
+        .bi { background: rgba($success, .12); color: $success !important; }
+    }
+    &.kpi-danger {
+        border-left-color: $danger;
+        .bi { background: rgba($danger, .12); color: $danger !important; }
+    }
+    &.kpi-warning {
+        border-left-color: $warning;
+        .bi { background: rgba($warning, .15); color: darken($warning, 15%) !important; }
+    }
+    &.kpi-info {
+        border-left-color: $info;
+        .bi { background: rgba($info, .12); color: darken($info, 10%) !important; }
+    }
 }
 
 .card {

@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-12: matriz de roles y permisos.
     CA-HU12-03: los permisos se ven y se configuran por modulo y por tipo
     de accion (leer, escribir, editar, eliminar).
@@ -6,7 +6,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Roles y Permisos')
-@section('subtitulo', 'HU-12 · Matriz de acceso del sistema')
+@section('subtitulo', 'Matriz de acceso del sistema')
 
 @section('contenido')
 

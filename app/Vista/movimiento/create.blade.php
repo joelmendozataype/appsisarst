@@ -1,8 +1,8 @@
-{{-- Capa VISTA - HU-08: registro de un movimiento (Figuras 3.9 y 3.10). --}}
+﻿{{-- Capa VISTA - HU-08: registro de un movimiento (Figuras 3.9 y 3.10). --}}
 @extends('layouts.app')
 
 @section('titulo', 'Nuevo movimiento')
-@section('subtitulo', 'HU-08 · Registro de movimiento institucional')
+@section('subtitulo', 'Registro de movimiento institucional')
 
 @section('contenido')
 

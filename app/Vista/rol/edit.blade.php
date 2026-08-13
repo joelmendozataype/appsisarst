@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-12 / CA-HU12-03: configuracion de los permisos de un
     rol como grilla modulo x accion. Cada casilla es un permiso concreto
     del catalogo; las combinaciones que el catalogo no define aparecen en
@@ -7,7 +7,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Permisos del rol '.$rol->nombre)
-@section('subtitulo', 'HU-12 · Configuracion por modulo y accion')
+@section('subtitulo', 'Configuración por módulo y acción')
 
 @section('contenido')
 

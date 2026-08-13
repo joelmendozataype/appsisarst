@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-16 / CA-HU16-02: asignacion de un horario a uno o
     varios trabajadores. Un mismo horario lo comparten varios: por eso la
     seleccion es multiple.
@@ -6,7 +6,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Asignar horario')
-@section('subtitulo', 'HU-16 · '.$horario->etiqueta)
+@section('subtitulo', ''.$horario->etiqueta)
 
 @section('contenido')
 

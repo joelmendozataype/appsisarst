@@ -1,8 +1,8 @@
-{{-- Capa VISTA - HU-16: edicion de un horario del catalogo. --}}
+﻿{{-- Capa VISTA - HU-16: edicion de un horario del catalogo. --}}
 @extends('layouts.app')
 
 @section('titulo', 'Editar horario')
-@section('subtitulo', 'HU-16 · '.$horario->nombre)
+@section('subtitulo', ''.$horario->nombre)
 
 @section('contenido')
 

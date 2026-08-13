@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-03: Consulta del padron de personal.
     Figuras 1.9 y 1.10 del documento de diseno.
     Filtros por establecimiento, area, cargo, condicion y estado
@@ -7,7 +7,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Padron de Personal')
-@section('subtitulo', 'HU-03 · Consulta del padron con filtros')
+@section('subtitulo', 'Consulta del padrón con filtros')
 
 @section('contenido')
 

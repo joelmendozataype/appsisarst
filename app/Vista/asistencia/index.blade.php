@@ -1,4 +1,4 @@
-{{--
+﻿{{--
     Capa VISTA - HU-06: Consulta de asistencia por periodo.
     Figuras 2.10 y 2.11 del documento de diseno.
     Filtros por rango de fechas, personal, area, cargo y estado
@@ -7,7 +7,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Control de Asistencia')
-@section('subtitulo', 'HU-06 · Consulta por periodo')
+@section('subtitulo', 'Consulta por período')
 
 @section('contenido')
 
