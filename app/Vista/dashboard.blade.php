@@ -596,12 +596,6 @@
     @endforeach
 </div>
 
-@if ($sinCuenta > 0 && auth()->user()->tienePermiso('USUARIOS', 'LEER'))
-    <div class="d-flex align-items-center gap-2 mt-3 px-3 py-2 rounded" style="background:#f0f9ff; border:1px solid #bae6fd; font-size:.84rem">
-        <i class="bi bi-info-circle text-info"></i>
-        <span>Hay <strong>{{ $sinCuenta }}</strong> trabajador(es) activo(s) sin cuenta de acceso.</span>
-    </div>
-@endif
 
 {{-- Cuentas bloqueadas + eventos de seguridad --}}
 @if (auth()->user()->tienePermiso('USUARIOS', 'LEER'))
