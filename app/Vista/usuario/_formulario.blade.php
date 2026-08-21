@@ -37,23 +37,17 @@
     <div class="col-12 col-md-6">
         <label for="correo_institucional" class="form-label obligatorio">Correo institucional</label>
         <input type="email" maxlength="120"
+               data-valida="correo"
+               data-msg="Debe contener @ y un dominio valido. Ejemplo: usuario@redsaludtayacaja.gob.pe"
                class="form-control @error('correo_institucional') is-invalid @enderror"
                id="correo_institucional" name="correo_institucional"
                value="{{ old('correo_institucional', $u?->correo_institucional) }}"
                placeholder="usuario@redsaludtayacaja.gob.pe"
-               pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-               title="Ingrese un correo valido con @. Ejemplo: usuario@redsaludtayacaja.gob.pe"
                autocomplete="off"
-               oninvalid="this.setCustomValidity(
-                   this.value === ''
-                       ? 'El correo institucional es obligatorio.'
-                       : 'Debe contener @ y un dominio valido. Ejemplo: usuario@redsaludtayacaja.gob.pe'
-               )"
-               oninput="this.setCustomValidity('')"
                required>
         <div class="form-text">
             <i class="bi bi-at"></i>
-            Obligatorio · debe contener <strong>@</strong> · a esta direccion se envia el enlace de recuperacion (HU-17).
+            Obligatorio · debe contener <strong>@</strong> · a esta direccion se envia el enlace de recuperacion.
         </div>
         @error('correo_institucional') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
@@ -67,8 +61,10 @@
     <div class="col-12 col-md-4">
         <label for="username" class="form-label obligatorio">Nombre de usuario</label>
         <input type="text" maxlength="40" minlength="4"
+               data-valida="usuario"
                class="form-control font-monospace @error('username') is-invalid @enderror"
-               id="username" name="username" value="{{ old('username', $u?->username) }}" required>
+               id="username" name="username" value="{{ old('username', $u?->username) }}"
+               placeholder="j.mendoza" autocomplete="off" required>
         <div class="form-text">Minimo 4 caracteres: minusculas, numeros, punto, guion.</div>
         @error('username') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
@@ -76,7 +72,7 @@
     @if ($esAlta)
         <div class="col-12 col-md-4">
             <label for="password" class="form-label obligatorio">Contrasena temporal</label>
-            <input type="password"
+            <input type="password" data-valida="clave" minlength="8"
                    class="form-control @error('password') is-invalid @enderror"
                    id="password" name="password" required autocomplete="new-password">
             <div class="form-text">Minimo 8 caracteres con letras y numeros.</div>
@@ -86,7 +82,10 @@
         <div class="col-12 col-md-4">
             <label for="password_confirmation" class="form-label obligatorio">Confirmar contrasena</label>
             <input type="password" class="form-control"
+                   data-valida="texto" data-igual-a="#password"
+                   data-msg="La confirmacion no coincide con la contrasena."
                    id="password_confirmation" name="password_confirmation" required autocomplete="new-password">
+            <div class="form-text">Debe repetir exactamente la contrasena anterior.</div>
         </div>
     @else
         <div class="col-12 col-md-8 d-flex align-items-end">
@@ -94,21 +93,24 @@
                 <i class="bi bi-info-circle me-1"></i>
                 La contrasena no se edita aqui. Use
                 <a href="{{ route('usuario.clave.form', $u) }}">Restablecer contrasena</a>,
-                o deje que el usuario la recupere por correo (HU-17).
+                o deje que el usuario la recupere por correo.
             </div>
         </div>
     @endif
 
     <div class="col-12 mt-4">
         <h2 class="h6 text-primary border-bottom pb-2 mb-0">
-            <i class="bi bi-shield-check me-1"></i> Roles (CA-HU12-01)
+            <i class="bi bi-shield-check me-1"></i> Roles
         </h2>
     </div>
 
     <div class="col-12">
         @error('roles') <div class="alert alert-danger py-2 small">{{ $message }}</div> @enderror
 
-        <div class="row g-2">
+        <div class="row g-2"
+             data-grupo-min="1"
+             data-grupo-nombre="roles[]"
+             data-grupo-msg="Asigne al menos un rol: una cuenta sin rol no puede acceder a ningun modulo.">
             @php($seleccionados = old('roles', $u?->roles->pluck('rol_id')->all() ?? []))
             @foreach ($roles as $rol)
                 <div class="col-12 col-md-6">

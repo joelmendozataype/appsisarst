@@ -48,7 +48,7 @@
                         <div class="row g-2 mb-3">
                             <div class="col-6">
                                 <label for="hora_entrada" class="form-label">Hora de entrada</label>
-                                <input type="time"
+                                <input type="time" data-valida="hora"
                                        class="form-control @error('hora_entrada') is-invalid @enderror"
                                        id="hora_entrada" name="hora_entrada"
                                        value="{{ old('hora_entrada', $asistencia->hora_entrada ? substr((string) $asistencia->hora_entrada, 0, 5) : '') }}">
@@ -56,7 +56,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="hora_salida" class="form-label">Hora de salida</label>
-                                <input type="time"
+                                <input type="time" data-valida="hora" data-desde="#hora_entrada"
                                        class="form-control @error('hora_salida') is-invalid @enderror"
                                        id="hora_salida" name="hora_salida"
                                        value="{{ old('hora_salida', $asistencia->hora_salida ? substr((string) $asistencia->hora_salida, 0, 5) : '') }}">
@@ -68,7 +68,7 @@
                             <label for="observacion" class="form-label">Observacion</label>
                             <textarea class="form-control @error('observacion') is-invalid @enderror"
                                       id="observacion" name="observacion" rows="2"
-                                      maxlength="255">{{ old('observacion', $asistencia->observacion) }}</textarea>
+                                      data-valida="texto" maxlength="255">{{ old('observacion', $asistencia->observacion) }}</textarea>
                             @error('observacion') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                     @else
                         <p class="text-muted mb-0">
                             El trabajador no tiene horario asignado, por lo que no puede
-                            marcarse como TARDANZA (CA-HU16-03).
+                            marcarse como TARDANZA.
                         </p>
                     @endif
                 </div>

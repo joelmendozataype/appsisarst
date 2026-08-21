@@ -104,13 +104,12 @@
                                 </div>
                             @endif
                         </td>
-                        <td class="small">
-                            {{ $u->personal?->nombre_completo }}
-                            <div class="text-muted" style="font-size:.72rem">
-                                {{ $u->personal?->area?->nombre }}
-                            </div>
+                        <td class="col-trabajador">
+                            <span title="{{ $u->personal?->area?->nombre }}">
+                                {{ $u->personal?->nombre_completo }}
+                            </span>
                         </td>
-                        <td class="small text-break">{{ $u->correo_institucional }}</td>
+                        <td class="small" style="max-width:200px;overflow:hidden;text-overflow:ellipsis">{{ $u->correo_institucional }}</td>
                         <td>
                             @forelse ($u->roles as $rol)
                                 <span class="badge text-bg-primary">{{ $rol->nombre }}</span>

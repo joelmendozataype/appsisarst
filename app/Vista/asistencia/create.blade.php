@@ -16,7 +16,7 @@
             <i class="bi bi-exclamation-triangle-fill me-1"></i>
             {{ $sinHorario }} trabajador(es) sin horario asignado. Sus marcaciones se
             guardaran como PUNTUAL porque el sistema no tiene contra que compararlas
-            (CA-HU16-03).
+            porque el sistema no tiene contra que compararlas.
         </div>
     @endif
 
@@ -73,13 +73,17 @@
                         <div class="row g-2 mb-3">
                             <div class="col-7">
                                 <label for="fecha" class="form-label obligatorio">Fecha</label>
-                                <input type="text" class="form-control js-fecha @error('fecha') is-invalid @enderror"
-                                       id="fecha" name="fecha" value="{{ old('fecha', $fecha) }}" required>
+                                <input type="text"
+                                       data-valida="fecha" data-no-futura
+                                       class="form-control js-fecha @error('fecha') is-invalid @enderror"
+                                       id="fecha" name="fecha" value="{{ old('fecha', $fecha) }}"
+                                       placeholder="AAAA-MM-DD" required>
                                 @error('fecha') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                             <div class="col-5">
                                 <label for="hora" class="form-label obligatorio">Hora</label>
-                                <input type="time" class="form-control @error('hora') is-invalid @enderror"
+                                <input type="time" data-valida="hora"
+                                       class="form-control @error('hora') is-invalid @enderror"
                                        id="hora" name="hora" value="{{ old('hora', now()->format('H:i')) }}" required>
                                 @error('hora') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
@@ -89,7 +93,7 @@
                             <label for="observacion" class="form-label">Observacion</label>
                             <textarea class="form-control @error('observacion') is-invalid @enderror"
                                       id="observacion" name="observacion" rows="2"
-                                      maxlength="255">{{ old('observacion') }}</textarea>
+                                      data-valida="texto" maxlength="255">{{ old('observacion') }}</textarea>
                             <div class="form-text">Opcional. Solo se guarda en la marcacion de entrada.</div>
                             @error('observacion') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>

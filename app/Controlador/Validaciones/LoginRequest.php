@@ -27,8 +27,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => ['required', 'string', 'max:40'],
-            'password' => ['required', 'string'],
+            'username' => ['required', 'string', 'min:4', 'max:40'],
+            'password' => ['required', 'string', 'max:255'],
         ];
     }
 
@@ -39,7 +39,32 @@ class LoginRequest extends FormRequest
     {
         return [
             'username.required' => 'Ingrese su nombre de usuario.',
+            'username.min' => 'El nombre de usuario tiene al menos 4 caracteres.',
+            'username.max' => 'El nombre de usuario no supera los 40 caracteres.',
             'password.required' => 'Ingrese su contrasena.',
         ];
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'username' => 'nombre de usuario',
+            'password' => 'contrasena',
+        ];
+    }
+
+    /**
+     * El username se guarda en minusculas (uq_usuario_username), asi que se
+     * normaliza antes de validar para que un "JMendoza" tecleado con
+     * mayusculas no impida el acceso.
+     */
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'username' => mb_strtolower(trim((string) $this->input('username'))),
+        ]);
     }
 }

@@ -32,7 +32,10 @@
     <form method="POST" action="{{ route('horario.asignar', $horario) }}">
         @csrf
 
-        <div class="card">
+        <div class="card"
+             data-grupo-min="1"
+             data-grupo-nombre="personal_ids[]"
+             data-grupo-msg="Marque al menos un trabajador antes de asignar el horario.">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <span>Seleccione a los trabajadores</span>
                 <div class="d-flex gap-2 align-items-center">

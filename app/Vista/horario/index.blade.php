@@ -11,26 +11,30 @@
 @section('contenido')
 
     <div class="card mb-3 no-imprimir">
-        <div class="card-body d-flex flex-wrap gap-2 align-items-end">
-            <form method="GET" action="{{ route('horario.index') }}" class="d-flex gap-2 flex-grow-1">
-                <div class="flex-grow-1" style="max-width:320px">
+        <div class="card-body">
+            <form method="GET" action="{{ route('horario.index') }}" class="row g-2 align-items-end">
+
+                <div class="col-12 col-md-5">
                     <label for="buscar" class="form-label">Buscar horario</label>
                     <input type="search" class="form-control" id="buscar" name="buscar"
                            value="{{ $buscar }}" placeholder="Nombre del horario">
                 </div>
-                <div class="align-self-end d-flex gap-2">
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
-                    <a href="{{ route('horario.index') }}" class="btn btn-outline-secondary">
-                        <i class="bi bi-x-circle"></i>
-                    </a>
-                </div>
-            </form>
 
-            @if (auth()->user()->tienePermiso('ASISTENCIA', 'ESCRIBIR'))
-                <a href="{{ route('horario.create') }}" class="btn btn-success">
-                    <i class="bi bi-plus-lg me-1"></i> Nuevo horario
-                </a>
-            @endif
+                <div class="col-12 d-flex gap-2 mt-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-funnel me-1"></i> Aplicar filtros
+                    </button>
+                    <a href="{{ route('horario.index') }}" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-1"></i> Limpiar
+                    </a>
+                    @if (auth()->user()->tienePermiso('ASISTENCIA', 'ESCRIBIR'))
+                        <a href="{{ route('horario.create') }}" class="btn btn-success ms-auto">
+                            <i class="bi bi-plus-lg me-1"></i> Nuevo horario
+                        </a>
+                    @endif
+                </div>
+
+            </form>
         </div>
     </div>
 
@@ -149,7 +153,7 @@
             <div class="card-body pb-0">
                 <p class="small text-muted">
                     Sin horario asignado el sistema no evalua tardanzas ni genera faltas
-                    automaticas para estos trabajadores (CA-HU16-03). Asigneles un horario
+                    automaticas para estos trabajadores. Asigneles un horario
                     desde el boton <i class="bi bi-people"></i> del catalogo.
                 </p>
             </div>

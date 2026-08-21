@@ -1,5 +1,6 @@
 ﻿{{-- Capa VISTA - Tablero profesional (Sprints 1-5). --}}
 @extends('layouts.app')
+@use(App\Modelo\CatalogoCasosUso)
 
 @section('titulo', 'Dashboard')
 @section('subtitulo', 'Panel de control · Red de Salud Tayacaja')
@@ -201,7 +202,30 @@
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
+
+/* ── Mapa de casos de uso ───────────────────────────────────────────── */
+.db-cu-sprint {
+    border: 1px solid #e3e8ef;
+    border-radius: .6rem;
+    overflow: hidden;
+    background: #fff;
+}
+.db-cu-sprint-head {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding: .55rem .8rem;
+    background: #f6f8fb;
+    border-bottom: 1px solid #e3e8ef;
+}
+.db-cu-sprint-nom { font-size: .86rem; font-weight: 600; color: #1f2d3d; }
+.db-cu-tabla th   { font-size: .68rem; text-transform: uppercase; letter-spacing: .04em; color: #8a97a8; font-weight: 600; }
+.db-cu-tabla td   { font-size: .8rem; vertical-align: middle; }
+.db-cu-tabla a    { text-decoration: none; }
+.db-cu-tabla a:hover { text-decoration: underline; }
 </style>
+
 @endpush
 
 @section('contenido')
@@ -691,5 +715,69 @@
 
     </div>
 @endif
+
+{{-- ══════════════════════════════════════════════════════════════════
+     Mapa de casos de uso del sistema (Sprints 1 al 5)
+
+     Reproduce en la interfaz el Diagrama de Casos de Uso General del
+     documento de Diseno: cada modulo con el nombre de todos sus casos
+     de uso y su trazabilidad CU <-> HU <-> RF.
+     ══════════════════════════════════════════════════════════════════ --}}
+<div class="card border-0 shadow-sm mt-4">
+    <div class="card-header bg-white d-flex align-items-center justify-content-between flex-wrap gap-2">
+        <h2 class="h6 mb-0">
+            <i class="bi bi-diagram-3 text-primary me-1"></i>
+            Mapa de Casos de Uso del Sistema
+        </h2>
+        <small class="text-muted">
+            Casos de uso por modulo funcional
+        </small>
+    </div>
+
+    <div class="card-body">
+        <div class="row g-3">
+            @foreach (CatalogoCasosUso::sprints() as $sp)
+                @php($n = (int) $sp['numero'])
+                <div class="col-12 col-xl-6">
+                    <div class="db-cu-sprint h-100">
+                        <div class="db-cu-sprint-head">
+                            <span class="db-cu-sprint-nom">
+                                <i class="bi {{ $sp['icono'] }} me-1"></i>{{ $sp['nombre'] }}
+                            </span>
+                        </div>
+
+                        <table class="table table-sm mb-0 db-cu-tabla">
+                            <thead>
+                                <tr>
+                                    <th>Caso de uso</th>
+                                    <th style="width:11rem">Actor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (CatalogoCasosUso::delSprint($n) as $cu)
+                                    <tr>
+                                        <td>
+                                            @if ($cu['menu'] && $cu['ruta_menu'])
+                                                <a href="{{ route($cu['ruta_menu']) }}"
+                                                   title="{{ $cu['descripcion'] }}">
+                                                    <i class="bi {{ $cu['icono'] }} me-1"></i>{{ $cu['nombre'] }}
+                                                </a>
+                                            @else
+                                                <span title="{{ $cu['descripcion'] }}">
+                                                    <i class="bi {{ $cu['icono'] }} me-1 text-muted"></i>{{ $cu['nombre'] }}
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td class="text-muted small">{{ $cu['actor'] }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
 @endsection

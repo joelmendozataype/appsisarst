@@ -126,11 +126,11 @@
                 @forelse ($registros as $a)
                     <tr>
                         <td class="small">{{ $a->fecha?->format('d/m/Y') }}</td>
-                        <td>
-                            <span class="fw-semibold">{{ $a->personal?->nombre_completo }}</span>
-                            <div class="text-muted font-monospace" style="font-size:.72rem">
-                                {{ $a->personal?->dni }}
-                            </div>
+                        <td class="col-trabajador">
+                            <span class="fw-semibold"
+                                  title="DNI {{ $a->personal?->dni }}">
+                                {{ $a->personal?->nombre_completo }}
+                            </span>
                         </td>
                         <td class="small">{{ $a->personal?->area?->nombre }}</td>
                         <td class="small">

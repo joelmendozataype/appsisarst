@@ -61,7 +61,7 @@
 
     <div class="col-6 col-md-3">
         <label for="fecha_inicio" class="form-label obligatorio">Fecha de inicio</label>
-        <input type="date"
+        <input type="date" data-valida="fecha"
                class="form-control @error('fecha_inicio') is-invalid @enderror"
                id="fecha_inicio" name="fecha_inicio"
                value="{{ old('fecha_inicio', $m?->fecha_inicio?->format('Y-m-d')) }}" required>
@@ -70,7 +70,7 @@
 
     <div class="col-6 col-md-3">
         <label for="fecha_fin" class="form-label obligatorio">Fecha de fin</label>
-        <input type="date"
+        <input type="date" data-valida="fecha" data-desde="#fecha_inicio"
                class="form-control @error('fecha_fin') is-invalid @enderror"
                id="fecha_fin" name="fecha_fin"
                value="{{ old('fecha_fin', $m?->fecha_fin?->format('Y-m-d')) }}" required>
@@ -81,7 +81,10 @@
     <div class="col-12">
         <label for="motivo" class="form-label obligatorio">Motivo</label>
         <textarea class="form-control @error('motivo') is-invalid @enderror"
-                  id="motivo" name="motivo" rows="3" maxlength="255"
+                  id="motivo" name="motivo" rows="3"
+                  data-valida="texto" minlength="10" maxlength="255"
+                  data-msg="Explique el motivo del movimiento (minimo 10 caracteres)."
+                  placeholder="Ej.: Comision de servicio para capacitacion en el hospital de referencia."
                   required>{{ old('motivo', $m?->motivo) }}</textarea>
         <div class="form-text">Minimo 10 caracteres. Es el sustento administrativo del movimiento.</div>
         @error('motivo') <div class="invalid-feedback">{{ $message }}</div> @enderror

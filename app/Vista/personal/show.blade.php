@@ -204,7 +204,7 @@
                                 @empty
                                     <tr><td colspan="6" class="text-center text-muted py-3">
                                         Sin asistencias registradas. El modulo de asistencia
-                                        corresponde al Sprint 2.
+                                        corresponde al Control de Asistencia.
                                     </td></tr>
                                 @endforelse
                                 </tbody>
@@ -236,7 +236,7 @@
                                 @empty
                                     <tr><td colspan="6" class="text-center text-muted py-3">
                                         Sin movimientos registrados. El modulo de movimientos
-                                        corresponde al Sprint 3.
+                                        corresponde a los Movimientos Institucionales.
                                     </td></tr>
                                 @endforelse
                                 </tbody>

@@ -42,7 +42,7 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="password" class="form-label obligatorio">Contrasena</label>
-                            <input type="password"
+                            <input type="password" data-valida="clave" minlength="8"
                                    class="form-control @error('password') is-invalid @enderror"
                                    id="password" name="password" required autocomplete="new-password">
                             <div class="form-text">Minimo 8 caracteres, con letras y numeros.</div>
@@ -54,8 +54,11 @@
                                 Confirmar contrasena
                             </label>
                             <input type="password" class="form-control"
+                                   data-valida="texto" data-igual-a="#password"
+                                   data-msg="La confirmacion no coincide con la contrasena."
                                    id="password_confirmation" name="password_confirmation"
                                    required autocomplete="new-password">
+                            <div class="form-text">Debe repetir exactamente la contrasena anterior.</div>
                         </div>
                     </div>
                     <div class="card-footer bg-white d-flex justify-content-between align-items-center">

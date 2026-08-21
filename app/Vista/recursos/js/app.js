@@ -9,12 +9,16 @@ import Swal from 'sweetalert2';
 import flatpickr from 'flatpickr';
 import { Spanish } from 'flatpickr/dist/l10n/es.js';
 import Chart from 'chart.js/auto';
+import { iniciarValidacion } from './validacion.js';
 
 window.bootstrap = bootstrap;
 window.Swal = Swal;
 window.Chart = Chart;
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Validacion de formularios (espejo de los FormRequest) -------
+    iniciarValidacion();
+
     // --- Selector de fechas en espanol -------------------------------
     flatpickr('.js-fecha', {
         locale: Spanish,

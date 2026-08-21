@@ -10,16 +10,23 @@
 
     <div class="col-12">
         <label for="nombre" class="form-label obligatorio">Nombre del horario</label>
-        <input type="text" maxlength="80"
+        <input type="text" minlength="3" maxlength="80"
+               data-valida="texto"
+               data-msg="Escriba un nombre descriptivo para el horario."
                class="form-control @error('nombre') is-invalid @enderror"
                id="nombre" name="nombre" value="{{ old('nombre', $h?->nombre) }}"
-               placeholder="Ej.: Administrativo, Asistencial diurno" required>
-        @error('nombre') <div class="invalid-feedback">{{ $message }}</div> @enderror
+               placeholder="Ej.: Administrativo, Asistencial diurno"
+               autocomplete="off" required>
+        @error('nombre')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @else
+            <div class="form-text">De 3 a 80 caracteres. No puede repetirse.</div>
+        @enderror
     </div>
 
     <div class="col-6 col-md-3">
         <label for="hora_entrada" class="form-label obligatorio">Hora de entrada</label>
-        <input type="time"
+        <input type="time" data-valida="hora"
                class="form-control @error('hora_entrada') is-invalid @enderror"
                id="hora_entrada" name="hora_entrada"
                value="{{ old('hora_entrada', $h ? $h->horaCorta('hora_entrada') : '08:00') }}" required>
@@ -28,7 +35,7 @@
 
     <div class="col-6 col-md-3">
         <label for="hora_salida" class="form-label obligatorio">Hora de salida</label>
-        <input type="time"
+        <input type="time" data-valida="hora" data-mayor-que="#hora_entrada"
                class="form-control @error('hora_salida') is-invalid @enderror"
                id="hora_salida" name="hora_salida"
                value="{{ old('hora_salida', $h ? $h->horaCorta('hora_salida') : '16:00') }}" required>
@@ -38,6 +45,7 @@
     <div class="col-6 col-md-3">
         <label for="tolerancia_min" class="form-label obligatorio">Tolerancia (minutos)</label>
         <input type="number" min="0" max="60"
+               data-valida="entero"
                class="form-control @error('tolerancia_min') is-invalid @enderror"
                id="tolerancia_min" name="tolerancia_min"
                value="{{ old('tolerancia_min', $h?->tolerancia_min ?? 10) }}" required>

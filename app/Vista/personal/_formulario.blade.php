@@ -3,12 +3,15 @@
     Los campos obligatorios son los que fija la historia HU-01
     (CA-HU01-01 y CA-HU01-02).
 
-    Validaciones implementadas:
-      - Nombres / Apellidos : solo letras, tildes, ñ, espacios y guiones
-      - Telefono            : solo digitos, +, - y espacios
-      - DNI                 : solo 8 digitos numericos
-      - Correo              : formato email RFC (type="email" + backend)
-      - Fecha ingreso       : no puede ser futura
+    Validaciones (declaradas con data-valida y aplicadas por
+    app/Vista/recursos/js/validacion.js; el servidor las repite en
+    App\Controlador\Validaciones\PersonalRequest):
+      - DNI                 : exactamente 8 digitos numericos (CA-HU01-03)
+      - Nombres / Apellidos : solo letras, tildes, ñ y espacios
+      - Cargo               : solo letras y espacios, minimo 3 caracteres
+      - Telefono            : solo digitos, +, - y espacios (6 a 15)
+      - Correo              : formato de correo electronico
+      - Fecha de ingreso    : formato AAAA-MM-DD y no puede ser futura
 --}}
 @php($p = $personal ?? null)
 
@@ -25,7 +28,7 @@
     <div class="col-12 col-md-3">
         <label for="dni" class="form-label obligatorio">DNI</label>
         <input type="text" inputmode="numeric" maxlength="8"
-               pattern="\d{8}"
+               data-valida="dni"
                title="El DNI debe tener exactamente 8 digitos numericos."
                class="form-control font-monospace @error('dni') is-invalid @enderror"
                id="dni" name="dni" value="{{ old('dni', $p?->dni) }}"
@@ -41,9 +44,9 @@
     <div class="col-12 col-md-4">
         <label for="nombres" class="form-label obligatorio">Nombres</label>
         <input type="text" maxlength="100"
-               pattern="[A-Za-zÀ-ÖØ-öø-ÿÁÉÍÓÚáéíóúÑñÜü][A-Za-zÀ-ÖØ-öø-ÿÁÉÍÓÚáéíóúÑñÜü\s]*"
-               title="Solo letras y espacios. Solo letras y espacios. Sin guiones ni simbolos."
-               class="form-control js-solo-letras @error('nombres') is-invalid @enderror"
+               data-valida="letras"
+               title="Solo letras y espacios. Sin guiones ni simbolos."
+               class="form-control @error('nombres') is-invalid @enderror"
                id="nombres" name="nombres" value="{{ old('nombres', $p?->nombres) }}"
                autocomplete="off" required>
         @error('nombres')
@@ -57,9 +60,9 @@
     <div class="col-12 col-md-5">
         <label for="apellidos" class="form-label obligatorio">Apellidos</label>
         <input type="text" maxlength="100"
-               pattern="[A-Za-zÀ-ÖØ-öø-ÿÁÉÍÓÚáéíóúÑñÜü][A-Za-zÀ-ÖØ-öø-ÿÁÉÍÓÚáéíóúÑñÜü\s]*"
-               title="Solo letras y espacios. Solo letras y espacios. Sin guiones ni simbolos."
-               class="form-control js-solo-letras @error('apellidos') is-invalid @enderror"
+               data-valida="letras"
+               title="Solo letras y espacios. Sin guiones ni simbolos."
+               class="form-control @error('apellidos') is-invalid @enderror"
                id="apellidos" name="apellidos" value="{{ old('apellidos', $p?->apellidos) }}"
                autocomplete="off" required>
         @error('apellidos')
@@ -74,10 +77,10 @@
         <label for="telefono" class="form-label obligatorio">Telefono</label>
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-            <input type="tel" inputmode="numeric" maxlength="15"
-                   pattern="[0-9+\- ]{6,15}"
+            <input type="tel" inputmode="numeric" maxlength="15" minlength="6"
+                   data-valida="telefono"
                    title="Solo digitos (0-9). Ejemplo: 987654321"
-                   class="form-control js-solo-telefono @error('telefono') is-invalid @enderror"
+                   class="form-control @error('telefono') is-invalid @enderror"
                    id="telefono" name="telefono" value="{{ old('telefono', $p?->telefono) }}"
                    placeholder="Ej: 987654321" autocomplete="tel" required>
         </div>
@@ -96,6 +99,7 @@
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
             <input type="email" maxlength="120"
+                   data-valida="correo"
                    title="Ingrese un correo electronico valido. Ejemplo: nombre@dominio.com"
                    class="form-control @error('correo') is-invalid @enderror"
                    id="correo" name="correo" value="{{ old('correo', $p?->correo) }}"
@@ -135,9 +139,10 @@
     <div class="col-12 col-md-6">
         <label for="cargo" class="form-label obligatorio">Cargo</label>
         <input type="text" minlength="3" maxlength="80"
-               pattern="[A-Za-zÀ-ÖØ-öø-ÿÁÉÍÓÚáéíóúÑñÜü][A-Za-zÀ-ÖØ-öø-ÿÁÉÍÓÚáéíóúÑñÜü\s]*"
+               data-valida="letras"
+               data-msg="El cargo solo debe contener letras y espacios. Ej: Medico Cirujano."
                title="El cargo solo debe contener letras y espacios. Ej: Medico Cirujano"
-               class="form-control js-cargo @error('cargo') is-invalid @enderror"
+               class="form-control @error('cargo') is-invalid @enderror"
                id="cargo" name="cargo" value="{{ old('cargo', $p?->cargo) }}"
                autocomplete="off" required>
         @error('cargo')
@@ -165,6 +170,7 @@
     <div class="col-12 col-md-4">
         <label for="fecha_ingreso" class="form-label obligatorio">Fecha de ingreso</label>
         <input type="text"
+               data-valida="fecha" data-no-futura
                class="form-control js-fecha @error('fecha_ingreso') is-invalid @enderror"
                id="fecha_ingreso" name="fecha_ingreso"
                value="{{ old('fecha_ingreso', $p?->fecha_ingreso?->format('Y-m-d')) }}"
@@ -185,273 +191,14 @@
                 </option>
             @endforeach
         </select>
-        <div class="form-text">Opcional. Sin horario no se evaluan tardanzas (Sprint 2).</div>
+        <div class="form-text">Opcional. Sin horario asignado el sistema no evalua tardanzas ni faltas.</div>
         @error('horario_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
 </div>
 
-{{-- ─── Validacion en tiempo real ─────────────────────────────────────────── --}}
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-    /* ── Helpers ──────────────────────────────────────────────────────── */
-
-    function marcarError(input, mensaje) {
-        input.classList.add('is-invalid');
-        input.classList.remove('is-valid');
-        var cont = input.closest('.input-group') || input.parentElement;
-        var fb = cont.querySelector('.fb-dinamico');
-        if (!fb) {
-            fb = document.createElement('div');
-            fb.className = 'invalid-feedback fb-dinamico';
-            cont.appendChild(fb);
-        }
-        fb.textContent = mensaje;
-    }
-
-    function marcarOk(input) {
-        input.classList.remove('is-invalid');
-        input.classList.add('is-valid');
-        var cont = input.closest('.input-group') || input.parentElement;
-        var fb = cont.querySelector('.fb-dinamico');
-        if (fb) fb.textContent = '';
-    }
-
-    function limpiarEstado(input) {
-        input.classList.remove('is-invalid', 'is-valid');
-        var cont = input.closest('.input-group') || input.parentElement;
-        var fb = cont.querySelector('.fb-dinamico');
-        if (fb) fb.textContent = '';
-    }
-
-    /* ── Efecto visual al bloquear una tecla ─────────────────────────── */
-    function parpadear(input) {
-        input.classList.add('border-danger');
-        setTimeout(function () { input.classList.remove('border-danger'); }, 300);
-    }
-
-    /* ── Regex de validacion ─────────────────────────────────────────── */
-
-    // Caracteres validos para nombres y apellidos: letras Unicode (tildes,
-    // ñ, dieresis), espacios, guiones, puntos y apostrofes.
-    // Se usa el rango À-ÖØ-öø-ÿ para cubrir el Bloque Latino Extendido.
-    var reLetrasOk    = /^[A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF][A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\s]*$/;
-    // Caracter INVALIDO para nombre/apellido (digito o simbolo especial)
-    var reCarInvalido  = /[^A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\s]/;   // para test()
-    var reCarInvalidoG = /[^A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\s]/g; // para replace() en paste
-
-    // Telefono
-    var reTel   = /^[0-9+\- ]{6,15}$/;
-
-    // Cargo: empieza con letra, cuerpo de letras/espacios/guiones/puntos/barras,
-    // opcionalmente termina con un ordinal numerico o romano precedido de espacio.
-    var reCargo = /^[A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF][A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF\s]*$/;
-
-    /* ── Campos de solo letras: Nombres y Apellidos ───────────────────── */
-    document.querySelectorAll('.js-solo-letras').forEach(function (input) {
-
-        /* Bloquear digitos Y simbolos especiales tecla a tecla */
-        input.addEventListener('keypress', function (e) {
-            // e.key tiene longitud 1 para caracteres imprimibles
-            if (e.key.length === 1 && reCarInvalido.test(e.key)) {
-                e.preventDefault();
-                parpadear(input);
-            }
-        });
-
-        /* Al pegar: eliminar cualquier caracter invalido del texto pegado */
-        input.addEventListener('paste', function (e) {
-            e.preventDefault();
-            var texto  = (e.clipboardData || window.clipboardData).getData('text');
-            var limpio = texto.replace(reCarInvalidoG, '');
-            /* insertText mantiene el cursor donde corresponde */
-            try { document.execCommand('insertText', false, limpio); }
-            catch (_) { input.value += limpio; }
-        });
-
-        /* Validar al perder el foco */
-        input.addEventListener('blur', function () {
-            var val = input.value.trim();
-            if (val === '') { limpiarEstado(input); return; }
-            if (reCarInvalido.test(val)) {
-                marcarError(input, 'Solo se permiten letras con tildes y espacios. Sin guiones, numeros ni simbolos.');
-            } else if (!/^[A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF]/.test(val)) {
-                marcarError(input, 'El campo debe iniciar con una letra.');
-            } else if (!reLetrasOk.test(val)) {
-                marcarError(input, 'Solo se permiten letras y espacios.');
-            } else {
-                marcarOk(input);
-            }
-        });
-
-        /* Limpiar estado al corregir */
-        input.addEventListener('input', function () {
-            if (!reCarInvalido.test(input.value)) limpiarEstado(input);
-        });
-    });
-
-    /* ── Campo de telefono ───────────────────────────────────────────── */
-    document.querySelectorAll('.js-solo-telefono').forEach(function (input) {
-
-        input.addEventListener('keypress', function (e) {
-            if (e.key.length === 1 && !/[0-9+\- ]/.test(e.key)) {
-                e.preventDefault();
-                parpadear(input);
-            }
-        });
-
-        input.addEventListener('paste', function (e) {
-            e.preventDefault();
-            var texto  = (e.clipboardData || window.clipboardData).getData('text');
-            var limpio = texto.replace(/[^0-9+\- ]/g, '');
-            try { document.execCommand('insertText', false, limpio); }
-            catch (_) { input.value += limpio; }
-        });
-
-        input.addEventListener('blur', function () {
-            var val = input.value.trim();
-            if (val === '') { limpiarEstado(input); return; }
-            if (!reTel.test(val)) {
-                marcarError(input, 'El telefono debe tener entre 6 y 15 digitos. No se permiten letras.');
-            } else {
-                marcarOk(input);
-            }
-        });
-
-        input.addEventListener('input', function () {
-            if (reTel.test(input.value.trim())) marcarOk(input);
-        });
-    });
-
-    /* ── DNI: solo 8 digitos ─────────────────────────────────────────── */
-    var dniInput = document.getElementById('dni');
-    if (dniInput) {
-        dniInput.addEventListener('keypress', function (e) {
-            if (e.key.length === 1 && !/\d/.test(e.key)) {
-                e.preventDefault();
-                parpadear(dniInput);
-            }
-        });
-        dniInput.addEventListener('paste', function (e) {
-            e.preventDefault();
-            var limpio = (e.clipboardData || window.clipboardData)
-                .getData('text').replace(/\D/g, '').slice(0, 8);
-            try { document.execCommand('insertText', false, limpio); }
-            catch (_) { dniInput.value = limpio; }
-        });
-        dniInput.addEventListener('blur', function () {
-            var val = dniInput.value.trim();
-            if (val === '') { limpiarEstado(dniInput); return; }
-            if (!/^\d{8}$/.test(val)) {
-                marcarError(dniInput, 'El DNI debe tener exactamente 8 digitos numericos.');
-            } else {
-                marcarOk(dniInput);
-            }
-        });
-    }
-
-    /* ── Cargo: inicia con letra, sin mezclas arbitrarias ────────────── */
-    var cargoInput = document.getElementById('cargo');
-    if (cargoInput) {
-
-        /* Bloquear simbolos claramente invalidos en cargo */
-        var reCargoCarInv = /[^A-Za-zÀ-ÖØ-öø-ÿ\s]/;
-        cargoInput.addEventListener('keypress', function (e) {
-            if (e.key.length === 1 && reCargoCarInv.test(e.key)) {
-                e.preventDefault();
-                parpadear(cargoInput);
-            }
-        });
-
-
-        cargoInput.addEventListener('paste', function (e) {
-            e.preventDefault();
-            var texto  = (e.clipboardData || window.clipboardData).getData('text');
-            var limpio = texto.replace(/[^A-Za-zÀ-ÖØ-öø-ÿ\s]/g, '');
-            try { document.execCommand('insertText', false, limpio); }
-            catch (_) { cargoInput.value += limpio; }
-        });
-        cargoInput.addEventListener('blur', function () {
-            var val = cargoInput.value.trim();
-            if (val === '') { limpiarEstado(cargoInput); return; }
-            if (val.length < 3) {
-                marcarError(cargoInput, 'El cargo debe tener al menos 3 caracteres.');
-            } else if (/^\d/.test(val)) {
-                marcarError(cargoInput, 'El cargo no puede empezar con un numero. Ej: Medico Cirujano.');
-            } else if (!reCargo.test(val)) {
-                marcarError(cargoInput, 'El cargo solo debe contener letras y espacios. Ej: Medico Cirujano.');
-            } else {
-                marcarOk(cargoInput);
-            }
-        });
-
-        cargoInput.addEventListener('input', function () {
-            var val = cargoInput.value.trim();
-            if (val.length >= 3 && reCargo.test(val)) marcarOk(cargoInput);
-            else if (val.length > 0) limpiarEstado(cargoInput);
-        });
-    }
-
-    /* ── Selects obligatorios ────────────────────────────────────────── */
-    ['area_id', 'condicion_laboral'].forEach(function (id) {
-        var sel = document.getElementById(id);
-        if (!sel) return;
-        sel.addEventListener('change', function () {
-            if (sel.value === '') {
-                marcarError(sel, 'Este campo es obligatorio.');
-            } else {
-                marcarOk(sel);
-            }
-        });
-        sel.addEventListener('blur', function () {
-            if (sel.value === '') marcarError(sel, 'Este campo es obligatorio.');
-        });
-    });
-
-    /* ── Validacion final al enviar el formulario ────────────────────── */
-    var form = document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            var hayError = false;
-
-            // Nombres y Apellidos
-            document.querySelectorAll('.js-solo-letras').forEach(function (input) {
-                var val = input.value.trim();
-                if (val === '' || reCarInvalido.test(val) || !reLetrasOk.test(val)) {
-                    if (val !== '') {
-                        marcarError(input, 'Solo se permiten letras y espacios. Sin guiones, numeros ni simbolos.');
-                        hayError = true;
-                    }
-                }
-            });
-
-            // Cargo
-            if (cargoInput) {
-                var valC = cargoInput.value.trim();
-                if (valC.length > 0 && (valC.length < 3 || !reCargo.test(valC))) {
-                    marcarError(cargoInput, 'El cargo solo debe contener letras y espacios. Ej: Medico Cirujano.');
-                    hayError = true;
-                }
-            }
-
-            // DNI
-            if (dniInput) {
-                var valD = dniInput.value.trim();
-                if (!/^\d{8}$/.test(valD)) {
-                    marcarError(dniInput, 'El DNI debe tener exactamente 8 digitos numericos.');
-                    hayError = true;
-                }
-            }
-
-            if (hayError) {
-                e.preventDefault();
-                // Scroll al primer campo con error
-                var primerError = form.querySelector('.is-invalid');
-                if (primerError) primerError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-    }
-});
-</script>
-@endpush
+{{--
+    La validacion en el navegador la resuelve el motor comun
+    app/Vista/recursos/js/validacion.js, declarado en cada campo con
+    los atributos data-valida / data-msg. Ya no hay script propio aqui:
+    las mismas reglas se aplican en todos los formularios del sistema.
+--}}

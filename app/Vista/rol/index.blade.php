@@ -12,7 +12,7 @@
 
     <div class="alert alert-light border small">
         <i class="bi bi-info-circle me-1"></i>
-        Esta matriz es la que aplica el sistema en cada peticion (CA-HU12-02).
+        Esta matriz es la que aplica el sistema en cada peticion.
         Un permiso marcado habilita esa accion en ese modulo para todos los usuarios
         que tengan el rol.
     </div>

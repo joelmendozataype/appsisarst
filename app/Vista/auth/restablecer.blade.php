@@ -23,6 +23,19 @@
                 <p class="mb-0 small opacity-75">{{ $usuario->correo_institucional }}</p>
             </div>
 
+            {{-- Caso de uso que implementa esta pantalla (documento de Diseno) --}}
+            @isset($casoUso)
+                @if ($casoUso)
+                    <div class="text-center small text-white-50 mb-3"
+                         title="{{ $casoUso['descripcion'] }}">
+                        {{ $sprintUso['nombre'] ?? '' }}<br>
+                        <span class="badge text-bg-light text-dark fw-semibold">
+                            {{ $casoUso['nombre'] }}
+                        </span>
+                    </div>
+                @endif
+            @endisset
+
             <div class="card">
                 <div class="card-body p-4">
 
@@ -47,7 +60,7 @@
                             <label for="password" class="form-label obligatorio">Contrasena nueva</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                <input type="password"
+                                <input type="password" data-valida="clave" minlength="8"
                                        class="form-control @error('password') is-invalid @enderror"
                                        id="password" name="password"
                                        autocomplete="new-password" autofocus required>
@@ -65,6 +78,8 @@
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
                                 <input type="password" class="form-control"
+                                       data-valida="texto" data-igual-a="#password"
+                                       data-msg="La confirmacion no coincide con la contrasena nueva."
                                        id="password_confirmation" name="password_confirmation"
                                        autocomplete="new-password" required>
                             </div>

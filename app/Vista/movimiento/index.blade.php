@@ -149,13 +149,12 @@
                 <tbody>
                 @forelse ($movimientos as $m)
                     <tr>
-                        <td>
-                            <a href="{{ route('movimiento.show', $m) }}" class="text-decoration-none fw-semibold">
+                        <td class="col-trabajador">
+                            <a href="{{ route('movimiento.show', $m) }}"
+                               class="text-decoration-none fw-semibold"
+                               title="DNI {{ $m->personal?->dni }}">
                                 {{ $m->personal?->nombre_completo }}
                             </a>
-                            <div class="text-muted font-monospace" style="font-size:.72rem">
-                                {{ $m->personal?->dni }}
-                            </div>
                         </td>
                         <td class="small">{{ $m->personal?->area?->nombre }}</td>
                         <td class="small">{{ str_replace('_', ' ', $m->tipo?->nombre ?? '') }}</td>

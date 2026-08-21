@@ -84,7 +84,7 @@
                     <div class="card-footer bg-white d-flex justify-content-between align-items-center">
                         <small class="text-muted">
                             Los cambios se aplican de inmediato a todas las cuentas con este rol,
-                            y quedan registrados en la auditoria (CA-HU12-04).
+                            y quedan registrados en la auditoria.
                         </small>
                         <div class="d-flex gap-2">
                             <a href="{{ route('rol.index') }}" class="btn btn-outline-secondary">Cancelar</a>

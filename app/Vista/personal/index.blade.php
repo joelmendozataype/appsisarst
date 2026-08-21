@@ -89,7 +89,7 @@
                         </button>
                         @if (auth()->user()->tienePermiso('PADRON', 'ESCRIBIR'))
                             <a href="{{ route('personal.create') }}" class="btn btn-success">
-                                <i class="bi bi-plus-lg me-1"></i> Nuevo personal
+                                <i class="bi bi-plus-lg me-1"></i> Registrar personal
                             </a>
                         @endif
                     </div>
@@ -126,12 +126,10 @@
                         <td class="font-monospace">{{ $trabajador->dni }}</td>
                         <td class="col-nombre">
                             <a href="{{ route('personal.show', $trabajador) }}"
-                               class="text-decoration-none fw-semibold">
+                               class="text-decoration-none fw-semibold"
+                               title="{{ $trabajador->correo }}">
                                 {{ $trabajador->nombre_completo }}
                             </a>
-                            @if ($trabajador->correo)
-                                <div class="small text-muted">{{ $trabajador->correo }}</div>
-                            @endif
                         </td>
                         <td class="small col-cargo">{{ $trabajador->cargo }}</td>
                         <td><span class="badge text-bg-secondary">{{ $trabajador->condicion_laboral }}</span></td>
@@ -154,13 +152,13 @@
                         </td>
                         <td class="text-end no-imprimir text-nowrap">
                             <a href="{{ route('personal.show', $trabajador) }}"
-                               class="btn btn-sm btn-outline-primary" title="Historial (HU-18)">
+                               class="btn btn-sm btn-outline-primary" title="Consultar Historial de Personal">
                                 <i class="bi bi-clock-history"></i>
                             </a>
 
                             @if (auth()->user()->tienePermiso('PADRON', 'EDITAR'))
                                 <a href="{{ route('personal.edit', $trabajador) }}"
-                                   class="btn btn-sm btn-outline-secondary" title="Editar (HU-02)">
+                                   class="btn btn-sm btn-outline-secondary" title="Editar Datos del Personal">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                             @endif
@@ -169,7 +167,7 @@
                                 @if ($trabajador->es_activo)
                                     <button type="button"
                                             class="btn btn-sm btn-outline-danger js-desactivar"
-                                            title="Desactivar (HU-04)"
+                                            title="Desactivar Personal"
                                             data-form="#form-baja-{{ $trabajador->personal_id }}"
                                             data-nombre="{{ $trabajador->nombre_completo }} · DNI {{ $trabajador->dni }}">
                                         <i class="bi bi-person-dash"></i>

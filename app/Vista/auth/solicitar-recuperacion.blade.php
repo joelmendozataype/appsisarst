@@ -25,6 +25,19 @@
                 <p class="mb-0 small opacity-75">Sistema SISARST · Red de Salud Tayacaja</p>
             </div>
 
+            {{-- Caso de uso que implementa esta pantalla (documento de Diseno) --}}
+            @isset($casoUso)
+                @if ($casoUso)
+                    <div class="text-center small text-white-50 mb-3"
+                         title="{{ $casoUso['descripcion'] }}">
+                        {{ $sprintUso['nombre'] ?? '' }}<br>
+                        <span class="badge text-bg-light text-dark fw-semibold">
+                            {{ $casoUso['nombre'] }}
+                        </span>
+                    </div>
+                @endif
+            @endisset
+
             <div class="card">
                 <div class="card-body p-4">
 
@@ -49,7 +62,7 @@
                             </label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                <input type="email"
+                                <input type="email" data-valida="correo" maxlength="120"
                                        class="form-control @error('correo_institucional') is-invalid @enderror"
                                        id="correo_institucional" name="correo_institucional"
                                        value="{{ old('correo_institucional') }}"

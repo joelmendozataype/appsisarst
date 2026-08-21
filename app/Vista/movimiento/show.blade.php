@@ -229,6 +229,8 @@
                                     </label>
                                     <textarea class="form-control" id="motivo_rechazo" name="motivo_rechazo"
                                               rows="3" maxlength="255" required minlength="10"
+                                              data-valida="texto"
+                                              data-msg="Explique el motivo del rechazo (minimo 10 caracteres)."
                                               placeholder="Explique por que se rechaza la solicitud"></textarea>
                                     <div class="form-text">
                                         Obligatorio: queda registrado en el movimiento y en la auditoria.

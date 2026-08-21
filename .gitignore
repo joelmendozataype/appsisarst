@@ -40,5 +40,10 @@ Homestead.json
 Homestead.yaml
 /auth.json
 
+# Enlace simbolico que crea "php artisan storage:link". Apunta a una ruta
+# absoluta de esta maquina, asi que no debe subirse: cada quien lo genera
+# al instalar el proyecto.
+/public/storage
+
 # NOTA: public/build SI se sube al repo para que los companeros
 # no necesiten ejecutar npm run build al clonar el proyecto.

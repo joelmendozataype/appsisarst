@@ -25,9 +25,23 @@
                 </p>
             </div>
 
+            {{-- Caso de uso que implementa esta pantalla (documento de Diseno) --}}
+            @isset($casoUso)
+                @if ($casoUso)
+                    <div class="text-center small text-white-50 mb-3"
+                         title="{{ $casoUso['descripcion'] }}">
+                        {{ $sprintUso['nombre'] ?? '' }}<br>
+                        <span class="badge text-bg-light text-dark fw-semibold">
+                            {{ $casoUso['nombre'] }}
+                        </span>
+                    </div>
+                @endif
+            @endisset
+
             <div class="card">
                 <div class="card-body p-4">
                     <h2 class="h6 text-muted mb-3">Ingrese sus credenciales</h2>
+
 
                     @if (session('exito'))
                         <div class="alert alert-success py-2 small">{{ session('exito') }}</div>
@@ -47,7 +61,8 @@
                             <label for="username" class="form-label obligatorio">Usuario</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                <input type="text"
+                                <input type="text" data-valida="usuario"
+                                       minlength="4" maxlength="40"
                                        class="form-control @error('username') is-invalid @enderror"
                                        id="username" name="username"
                                        value="{{ old('username') }}"
@@ -59,7 +74,7 @@
                             <label for="password" class="form-label obligatorio">Contrasena</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                                <input type="password"
+                                <input type="password" data-valida="texto"
                                        class="form-control @error('password') is-invalid @enderror"
                                        id="password" name="password"
                                        autocomplete="current-password" required>

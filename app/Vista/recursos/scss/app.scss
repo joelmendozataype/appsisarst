@@ -23,7 +23,8 @@ $border-radius: .5rem;
 :root {
     --sisarst-sidebar-bg: #0b2d4d;
     --sisarst-sidebar-hover: #14406b;
-    --sisarst-sidebar-width: 260px;
+    --sisarst-sidebar-width: 288px;   // holgura para el nombre completo de cada caso de uso
+    --sisarst-topbar-height: 106px;   // padding + rotulo del caso de uso + titulo + subtitulo
 }
 
 html, body {
@@ -138,29 +139,95 @@ body {
             font-size: .88rem;
         }
     }
+
+    // ── Encabezado del grupo: "Sprint N" + nombre del módulo ───────────
+    .sisarst-nav-grupo {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+        min-width: 0;
+    }
+
+    .sisarst-nav-modulo {
+        font-size: .86rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    // ── Opción de menú = un caso de uso ────────────────────────────────
+    .sisarst-cu {
+        align-items: flex-start;
+
+        i {
+            margin-top: .15rem;
+            flex-shrink: 0;
+        }
+    }
+
+    .sisarst-cu-texto {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+        min-width: 0;
+    }
+
+    .sisarst-cu-nombre {
+        font-size: .84rem;
+    }
+}
+
+// --- Rótulo del caso de uso en la barra superior ----------------------
+.sisarst-cu-badge {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: .4rem;
+    line-height: 1.1;
+    margin-bottom: .15rem;
+
+    .sisarst-cu-badge-sprint {
+        font-size: .64rem;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+        color: #6c757d;
+    }
+
+    .sisarst-cu-badge-cu {
+        font-size: .7rem;
+        font-weight: 700;
+        color: $primary;
+        background: rgba(11, 45, 77, .07);
+        border: 1px solid rgba(11, 45, 77, .15);
+        border-radius: .25rem;
+        padding: .05rem .4rem;
+    }
+
 }
 
 .sisarst-main {
     margin-left: var(--sisarst-sidebar-width); // espacio para el sidebar fixed
+    padding-top: var(--sisarst-topbar-height);  // espacio para el topbar fixed
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .sisarst-topbar {
     background: #fff;
     border-bottom: 1px solid #dee2e6;
-    padding: .75rem 1.5rem;
-    position: sticky;
+    padding: .625rem 1.5rem;
+    height: var(--sisarst-topbar-height);
+    position: fixed;
     top: 0;
-    z-index: 100;           // menor que el sidebar (1040) para no taparlo
-    flex-shrink: 0;
+    left: var(--sisarst-sidebar-width);
+    right: 0;
+    z-index: 1030;           // debajo del sidebar (1040), encima del contenido
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     box-shadow: 0 1px 4px rgba(16, 24, 40, .07);
 }
 
 .sisarst-content {
     padding: 1.5rem;
-    flex: 1 1 auto;
 }
 
 // --- Tarjetas de indicadores -----------------------------------------
@@ -231,16 +298,36 @@ body {
     font-weight: 600;
 }
 
+// --- Formularios de filtro (solo tarjetas .card.no-imprimir) ---------
+// Aplicar solo a cards que son filtros, no a footers o celdas con no-imprimir
+.card.no-imprimir {
+    .form-label {
+        font-size: .78rem;
+        font-weight: 500;
+        margin-bottom: .2rem;
+        color: $secondary;
+    }
+    .form-control,
+    .form-select {
+        font-size: .82rem;
+        padding: .3rem .6rem;
+    }
+    .btn:not(.btn-sm) {
+        font-size: .82rem;
+        padding: .35rem .75rem;
+    }
+}
+
 // --- Tablas -----------------------------------------------------------
 .table > :not(caption) > * > * {
-    padding: .65rem .75rem;
+    padding: .45rem .65rem;  // reducido para mayor densidad
 }
 
 .tabla-padron {
     min-width: 860px;       // ancho mínimo para que la tabla no comprima columnas
 
     th {
-        font-size: .76rem;
+        font-size: .72rem;
         text-transform: uppercase;
         letter-spacing: .05em;
         color: $secondary;
@@ -248,18 +335,34 @@ body {
     }
 
     td {
+        font-size: .82rem;
         white-space: nowrap;
         vertical-align: middle;
+
+        // Info secundaria (DNI, email, área, establecimiento) → en la misma línea
+        div.text-muted,
+        div.small {
+            display: inline;
+            font-size: .75rem;
+            &::before { content: "\00a0·\00a0"; color: #adb5bd; }
+        }
     }
 
-    // Columna nombre: texto largo permitido, ancho fijo
+    // Columna nombre (padrón): ancho controlado + truncado con ellipsis
     td.col-nombre {
-        white-space: normal;
-        min-width: 170px;
         max-width: 230px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    // Cargo y Area: nowrap para no comprimir la fila
+    // Columna trabajador (asistencia/movimiento/usuario): nombre + info secundaria inline
+    td.col-trabajador {
+        max-width: 210px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    // Cargo y Area: nowrap garantizado
     td.col-cargo,
     td.col-area {
         white-space: nowrap;
@@ -335,4 +438,34 @@ body {
             transform: translateX(0);
         }
     }
+
+    // En móvil el sidebar está oculto → el contenido ocupa todo el ancho
+    .sisarst-main {
+        margin-left: 0;
+    }
+
+    .sisarst-topbar {
+        left: 0;
+    }
+}
+
+// --- Grupo de casillas inválido (roles, permisos, asignación masiva) ---
+.sisarst-grupo-invalido {
+    outline: 1px solid $danger;
+    outline-offset: .35rem;
+    border-radius: .35rem;
+
+    .js-fb-grupo {
+        margin-top: .5rem;
+        font-size: .82rem;
+    }
+}
+
+// El motor de validación inserta sus mensajes con la clase .js-fb;
+// deben verse aunque el campo no esté dentro de un .was-validated.
+.js-fb,
+.js-fb-grupo {
+    display: block;
+    color: $danger;
+    font-size: .82rem;
 }

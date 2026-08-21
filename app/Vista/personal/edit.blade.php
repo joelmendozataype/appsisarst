@@ -48,7 +48,7 @@
                             creado el {{ $personal->created_at?->format('d/m/Y H:i') }} ·
                             ultima modificacion {{ $personal->updated_at?->format('d/m/Y H:i') }}.
                             El estado del trabajador solo se cambia desde la accion de
-                            desactivacion (HU-04), no desde este formulario.
+                            desactivacion, no desde este formulario.
                         </div>
                     </div>
                 </div>

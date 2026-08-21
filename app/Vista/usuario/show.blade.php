@@ -110,7 +110,7 @@
 
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="bi bi-key me-1"></i> Permisos efectivos (CA-HU12-02)
+                    <i class="bi bi-key me-1"></i> Permisos efectivos
                 </div>
                 <div class="card-body">
                     @php($permisos = $usuario->roles->pluck('permisos')->flatten()->unique('permiso_id')->groupBy('modulo'))
